@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class blog_author(models.Model):
@@ -10,6 +11,9 @@ class blog_author(models.Model):
     def __str__(self):   
         return '{0}, {1}'.format(self.last_name, self.first_name)
     
+    def get_absolute_url(self):
+        return reverse('author-detail', args=[str(self.id)])
+    
 
 class blog(models.Model):
     title = models.CharField(max_length=200)
@@ -19,6 +23,10 @@ class blog(models.Model):
 
     def __str__(self):
         return self.title
+
+    
+    def get_absolute_url(self):
+        return reverse('blog-detail', args=[str(self.id)])
 
 class blog_comment(models.Model):
     blog = models.ForeignKey(blog, on_delete=models.CASCADE)

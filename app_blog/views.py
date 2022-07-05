@@ -11,3 +11,9 @@ class BlogListWiew(generic.ListView):
 
 class AuthorListWiew(generic.ListView):
     model = blog_author
+
+class BlogDetailView(generic.DetailView):
+    model = blog
+
+class BlogAuthorDetailView(generic.DeleteView):
+    model = blog_author
