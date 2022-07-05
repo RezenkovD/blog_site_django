@@ -8,7 +8,7 @@
 
       {% for blog in blog_list %}
       <li>
-        <a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a> ({{blog.date_of_publication}}) --- <a href="{{ blog_author.get_absolute_url }}">{{ blog.blog_author }}</a>
+        <a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a> ({{blog.date_of_publication}}) --- <a href="{{ blog.blog_author.get_absolute_url }}">{{ blog.blog_author }}</a>
       </li>
       {% endfor %}
 
