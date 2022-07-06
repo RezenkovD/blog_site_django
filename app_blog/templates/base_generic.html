@@ -28,6 +28,14 @@
           <li><p class="p1"><a href="{% url 'index' %}">Home</p></a></li>
           <li><p class="p1"><a href="{% url 'blogs' %}">All blogs</p></a></li>
           <li><p class="p1"><a href="{% url 'authors' %}">All bloggers</p></a></li>
+          
+          {% if user.is_authenticated %}
+          <li><p class="p1">User: {{ user.get_username }}</p></li>
+          <li><p class="p1"><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></p></li>
+          {% else %}
+          <li><p class="p1"><a href="{% url 'login'%}?next={{request.path}}">Login</a></p></li>
+          {% endif %} 
+
       </ul>
      {% endblock %}
       </div>
