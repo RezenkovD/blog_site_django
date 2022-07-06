@@ -1,12 +1,12 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1><p class="p1">Title : {{blog.title}}</p></h1>
+<h1><p class="p1">{{blog.title}}</p></h1>
 
 
-<p class="p1"><strong>blog_author:</strong> <a href="{{ blog.blog_author.get_absolute_url }}">{{ blog.blog_author }}</a></p>
-<p class="p1"><strong>date_of_publication:</strong> {{ blog.date_of_publication }}</p>
-<p class="p1"><strong>description:</strong> {{ blog.description }}</p>
+<p class="p1"><a href="{{ blog.blog_author.get_absolute_url }}">{{ blog.blog_author }}</a></p>
+<p class="p1">{{ blog.date_of_publication }}</p>
+<p class="p1">{{ blog.description }}</p>
 
   </div>
 {% endblock %}

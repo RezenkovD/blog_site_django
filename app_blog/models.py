@@ -18,12 +18,14 @@ class blog_author(models.Model):
 class blog(models.Model):
     title = models.CharField(max_length=200)
     blog_author = models.ForeignKey('blog_author', on_delete=models.SET_NULL, null=True)
-    description = models.TextField(max_length=10000, help_text="Enter your blog")
+    description = models.TextField(max_length=15000, help_text="Enter your blog")
     date_of_publication = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ["-date_of_publication"]
     
     def get_absolute_url(self):
         return reverse('blog-detail', args=[str(self.id)])

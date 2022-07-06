@@ -8,6 +8,7 @@ def index(request):
 
 class BlogListWiew(generic.ListView):
     model = blog
+    paginate_by = 5
 
 class AuthorListWiew(generic.ListView):
     model = blog_author
