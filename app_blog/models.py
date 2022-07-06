@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-from django.contrib.auth.models import User
 
 # Create your models here.
 class blog_author(models.Model):
@@ -36,7 +35,10 @@ class blog_comment(models.Model):
     blog_author = models.ForeignKey('blog_author', on_delete=models.SET_NULL, null=True)
     description = models.TextField(max_length=1000, help_text="Enter comment about blog here.")
     post_date = models.DateTimeField(auto_now_add=True)
-
+    
+    class Meta:
+        ordering = ["post_date"]
+    
     def __str__(self):
         len_title=75
 
