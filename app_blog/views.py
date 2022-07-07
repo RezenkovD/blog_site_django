@@ -24,37 +24,34 @@ class BlogAuthorDetailView(generic.DetailView):
 
 
 #create/delete/update 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
-class blogcreate(CreateView):
+class blogcreate(LoginRequiredMixin, CreateView):
     model = blog
     fields = '__all__'
 
-class blogdelete(DeleteView):
+class blogdelete(LoginRequiredMixin, DeleteView):
     model = blog
     success_url = reverse_lazy('blogs')
 
-class blogupdate(UpdateView):
+class blogupdate(LoginRequiredMixin, UpdateView):
     model = blog
     fields = '__all__'
     
-class authorcreate(CreateView):
+class authorcreate(LoginRequiredMixin, CreateView):
     model = blog_author
     fields = '__all__'
 
-class authordelete(DeleteView):
+class authordelete(LoginRequiredMixin, DeleteView):
     model = blog_author
     success_url = reverse_lazy('authors')
 
-class authorupdate(UpdateView):
+class authorupdate(LoginRequiredMixin, UpdateView):
     model = blog_author
     fields = '__all__'
 
-
-
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import CreateView
 from django.urls import reverse
 
 
