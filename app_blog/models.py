@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from django.db import models
 from django.urls import reverse
 
@@ -19,7 +20,7 @@ class blog(models.Model):
     title = models.CharField(max_length=200)
     blog_author = models.ForeignKey('blog_author', on_delete=models.SET_NULL, null=True)
     description = models.TextField(max_length=15000, help_text="Enter your blog")
-    date_of_publication = models.DateField(null=True, blank=True)
+    date_of_publication = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return self.title
@@ -30,9 +31,12 @@ class blog(models.Model):
     def get_absolute_url(self):
         return reverse('blog-detail', args=[str(self.id)])
 
+
+from django.contrib.auth.models import User #Blog author or commenter
+
 class blog_comment(models.Model):
     blog = models.ForeignKey(blog, on_delete=models.CASCADE)
-    blog_author = models.ForeignKey('blog_author', on_delete=models.SET_NULL, null=True)
+    blog_author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     description = models.TextField(max_length=1000, help_text="Enter comment about blog here.")
     post_date = models.DateTimeField(auto_now_add=True)
     

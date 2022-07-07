@@ -8,6 +8,10 @@ urlpatterns = [
    path('blog/bloggers/', views.AuthorListWiew.as_view(), name='authors'),
    path('blog/<int:pk>', views.BlogDetailView.as_view(), name='blog-detail'),
    path('blog/blogger/<int:pk>', views.BlogAuthorDetailView.as_view(), name='author-detail'),
+
+
+    path('blog/<int:pk>/comment/', views.BlogCommentCreate.as_view(), name='blog_comment'),
+
 ]
 
 urlpatterns += [

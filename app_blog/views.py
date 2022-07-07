@@ -23,7 +23,6 @@ class BlogAuthorDetailView(generic.DetailView):
     model = blog_author
 
 
-
 #create/delete/update 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -51,3 +50,21 @@ class authordelete(DeleteView):
 class authorupdate(UpdateView):
     model = blog_author
     fields = '__all__'
+
+
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import CreateView
+from django.urls import reverse
+
+
+class BlogCommentCreate(LoginRequiredMixin, CreateView):
+    model = blog_comment
+    fields = ['blog', 'description']
+        
+    def form_valid(self, form):
+        form.instance.blog_author = self.request.user
+        return super(BlogCommentCreate, self).form_valid(form)
+
+    def get_success_url(self): 
+        return reverse('blog-detail', kwargs={'pk': self.kwargs['pk'],})
