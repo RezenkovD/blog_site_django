@@ -21,4 +21,33 @@ class BlogDetailView(generic.DetailView):
 
 class BlogAuthorDetailView(generic.DetailView):
     model = blog_author
+
+
+
+#create/delete/update 
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
+class blogcreate(CreateView):
+    model = blog
+    fields = '__all__'
+
+class blogdelete(DeleteView):
+    model = blog
+    success_url = reverse_lazy('blogs')
+
+class blogupdate(UpdateView):
+    model = blog
+    fields = '__all__'
     
+class authorcreate(CreateView):
+    model = blog_author
+    fields = '__all__'
+
+class authordelete(DeleteView):
+    model = blog_author
+    success_url = reverse_lazy('authors')
+
+class authorupdate(UpdateView):
+    model = blog_author
+    fields = '__all__'

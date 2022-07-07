@@ -14,6 +14,7 @@
       <!-- <dt><p class="p1">{{blog.description}}</p></dt> -->
     {% endfor %}
     </dl>
-     
+    <p class="p1"><a href="{{ blog_author.get_absolute_url }}/update">Author update</a></p>
+    <p class="p1"><a href="{{ blog_author.get_absolute_url }}/delete">Author delete</a></p>
   </div>
 {% endblock %}

@@ -8,5 +8,8 @@
 <p class="p1">{{ blog.date_of_publication }}</p>
 <p class="p1">{{ blog.description }}</p>
 
+
+<p class="p1"><a href="{{ blog.get_absolute_url }}/update">Blog update</a></p>
+<p class="p1"><a href="{{ blog.get_absolute_url }}/delete">Blog delete</a></p>
   </div>
 {% endblock %}
