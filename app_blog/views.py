@@ -64,6 +64,11 @@ from django.urls import reverse
 class BlogCommentCreate(LoginRequiredMixin, CreateView):
     model = blog_comment
     fields = ['blog', 'description']
-        
+    
+    def form_valid(self, form):
+        form.instance.blog_author = self.request.user
+        return super(BlogCommentCreate, self).form_valid(form)
+
+
     def get_success_url(self): 
         return reverse('blog-detail', kwargs={'pk': self.kwargs['pk'],})
